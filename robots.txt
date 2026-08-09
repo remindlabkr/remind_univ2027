@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://remindlabkr.github.io/remind_univ2027/sitemap.xml
