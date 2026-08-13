@@ -72,11 +72,11 @@ def page(u):
 
     pre = '<p class="pre">🔴 수능 전 논술 실시</p>' if u.get('pre') else ''
     body = ''.join([
-        row('논술 · 내신 반영', html.escape(strip_tags(u.get('no')))),
+        row('논술, 내신 반영', html.escape(strip_tags(u.get('no')))),
         row('수능 최저 (인문)', html.escape(strip_tags(u.get('mn')))),
         row('논술 고사일 (2027)', html.escape(date)),
-        row('출제 유형 · 고사시간', html.escape(ex)),
-        row('2026 → 2027 변경', html.escape(strip_tags(u.get('ch'))) if u.get('ch') != '—' else '주요 변경 없음'),
+        row('출제 유형, 고사시간', html.escape(ex)),
+        row('2026 → 2027 변경', html.escape(strip_tags(u.get('ch'))) if u.get('ch') not in ('','없음','') else '주요 변경 없음'),
         row('동점자 처리 기준', html.escape(strip_tags(u.get('tie')))),
     ])
     return f'''<!DOCTYPE html>
@@ -84,7 +84,7 @@ def page(u):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{n} 2027 논술 일정, 수능최저, 모집인원 · 리마인드 논술</title>
+<title>{n} 2027 논술 일정, 수능최저, 모집인원, 리마인드 논술</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{BASE}/u/{slug(u['n'])}.html">
 <meta property="og:title" content="{n} 2027 수시 논술 전형 정리">
