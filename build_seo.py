@@ -39,7 +39,10 @@ def slug(name):
 
 
 def strip_tags(v):
-    return re.sub(r'<[^>]+>', ' ', str(v or '')).replace('&nbsp;', ' ').strip()
+    # 데이터의 <br> 는 항목 구분자다. 그냥 지우면 항목이 붙어버리니 쉼표로 바꾼다.
+    t = re.sub(r'<br\s*/?>', ', ', str(v or ''))
+    t = re.sub(r'<[^>]+>', ' ', t).replace('&nbsp;', ' ')
+    return re.sub(r'\s+', ' ', t).strip()
 
 
 def row(k, v):
