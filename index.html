@@ -153,8 +153,8 @@ function openUni(name){
   h+=`<div class="card"><h3>🎯 수능 최저학력기준 (2027, 인문)</h3><div class="body">`;
   if(u.mn.includes("[일반형]")){
     let pr=u.mn.split("[창의형]");
-    let gen=pr[0].replace("[일반형]","").trim().replace(/^/\s*/,"");
-    let cre=(pr[1]||"").trim().replace(/^/\s*/,"");
+    let gen=pr[0].replace("[일반형]","").trim().replace(/^,\s*/,"");
+    let cre=(pr[1]||"").trim().replace(/^,\s*/,"");
     h+=`<div class="kv"><div class="k">일반형</div><div class="v">${gen.replace(/, /g,"<br>")}</div></div><div class="kv"><div class="k">창의형</div><div class="v">${cre.replace(/, /g,"<br>")}</div></div>`;
   } else {
     h+=`<div class="kv"><div class="k">인문</div><div class="v">${u.mn.replace(/, /g,"<br>")}</div></div>`;
