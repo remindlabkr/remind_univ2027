@@ -113,9 +113,7 @@ const GICHUL={};
 const SIGNUP='https://remind-final-schedule.onrender.com/';
 const LINKS={note:"#리라이팅노트-구매링크",kim:"#김과외-프로필링크",home:"#홈페이지링크",review:"#합격후기링크",consult:"https://whattime.co.kr/remind/remind",vod:"#VOD-수강신청링크",video:"#수강생-영상링크",buy:"#강의-구매링크",ot:"https://app.notion.com/p/yezizone/3-T-OT-33600368ac8780dba595ea965d08c394?source=copy_link",kim2:"https://kimstudy.com/tutor/s/203be556-4df0-4c98-a9ce-8ec4c83e41fd?O3WRXJQK9E=3BE52AQF0"};
 const BANNERS=[
- {t:"👑 김과외 인문논술 전체 1위, 리마인드 선생님 소개서 보러가기 →",l:"kim2"},
- {t:"🧑🏼‍🏫 리마인드 논술 선생님 소개영상 & 커리큘럼 보러가기 →",l:"ot"},
- {t:"🗓️ 1:1 논술 무료 상담 신청하고 논술 전략 짜기 →",l:"consult"},
+ {t:"👑 김과외 인문논술 랭킹 전체 1위, 리마인드 논술 소개서 보러가기 →",l:"ot"},
 ];
 function pickBanner(){return BANNERS[Math.floor(Math.random()*BANNERS.length)];}
 function setBanner(el,b){if(!el)return;el.innerHTML=b.t+' <span style="opacity:.85">›</span>';el.href=LINKS[b.l]||'#';}
@@ -145,8 +143,7 @@ function openUni(name){
   const _su=SIGNUP+'?u='+encodeURIComponent(u.n);
   let h=(u.noclass||u.noclassmsg)?'':
     `<div class="ctawrap">`+
-    `<a class="cta cta1" href="${_su}" target="_blank">🎥 <b>${u.n} 수업 들으러 가기</b> →</a>`+
-    `<a class="cta cta2" href="${_su}" target="_blank">📄 <b>${u.n} 합격가능성 리포트 신청하기</b> →</a>`+
+    `<a class="cta cta1" href="${_su}" target="_blank">🏫 <b>${u.n} 수업 신청하러가기</b> <span style="font-weight:800">(첫 결제 50% 할인)</span> →</a>`+
     `</div>`;
   h+=`<div class="card"><h3>📌 논술, 내신 반영 비중</h3><div class="body"><span class="badge">${u.no}</span></div></div>`;
   if(u.m)h+=`<div class="card"><h3>🧮 수리논술 안내</h3><div class="body"><div class="info">${u.m}</div></div></div>`;

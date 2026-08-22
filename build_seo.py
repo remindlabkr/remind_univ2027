@@ -70,8 +70,7 @@ def page(u):
     if not (u.get('noclass') or u.get('noclassmsg')):
         su = SIGNUP + '?u=' + html.escape(u['n'])
         cta = (f'<div class="cta-wrap">'
-               f'<a class="cta cta1" href="{su}">🎥 <b>{n} 수업 들으러 가기</b> →</a>'
-               f'<a class="cta cta2" href="{su}">📄 <b>{n} 합격가능성 리포트 신청하기</b> →</a></div>')
+               f'<a class="cta cta1" href="{su}">🏫 <b>{n} 수업 신청하러가기</b> (첫 결제 50% 할인) →</a></div>')
 
     pre = '<p class="pre">🔴 수능 전 논술 실시</p>' if u.get('pre') else ''
     body = ''.join([
