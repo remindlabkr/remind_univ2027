@@ -141,10 +141,8 @@ function openUni(name){
   const tie=u.tie||TIE_DEFAULT;
   // 보고 있는 대학의 수강신청 배너. 리마인드가 수업을 안 하는 학교(noclass)에는 띄우지 않는다.
   const _su=SIGNUP+'?u='+encodeURIComponent(u.n);
-  let h=(u.noclass||u.noclassmsg)?'':
-    `<div class="ctawrap">`+
-    `<a class="cta cta1" href="${_su}" target="_blank">🏫 <b>${u.n} 수업 신청하러가기</b> <span style="font-weight:800">(첫 결제 50% 할인)</span></a>`+
-    `</div>`;
+  // CTA(수업신청+합격스킬)는 맨 위가 아니라 '동점자 처리 기준' 아래에 노출 (2026-08-23 대표님). 밑의 합격SKILL 카드는 유지.
+  let h='';
   h+=`<div class="card"><h3>📌 논술, 내신 반영 비중</h3><div class="body"><span class="badge">${u.no}</span></div></div>`;
   if(u.m)h+=`<div class="card"><h3>🧮 수리논술 안내</h3><div class="body"><div class="info">${u.m}</div></div></div>`;
   h+=`<div class="card"><h3>🎯 수능 최저학력기준 (2027, 인문)</h3><div class="body">`;
@@ -171,6 +169,12 @@ function openUni(name){
   if(u.ex)h+=`<div class="card"><h3>📝 출제 유형, 고사시간</h3><div class="body">${u.ex}</div></div>`;
   h+=`<div class="card"><h3>🗓️ 논술 고사일 (2027)</h3><div class="body">${u.pre?'<div style="color:#D64545;font-weight:800;margin-bottom:6px">🔴 수능 전 논술 실시</div>':''}${u.date||'<span style="color:var(--mut)">2027 수시 요강 발표 기준, 확인 필요</span>'}</div></div>`;
   h+=`<div class="card"><h3>⚖️ 동점자 처리 기준</h3><div class="body"><div class="tie">${tie}</div></div></div>`;
+  if(!(u.noclass||u.noclassmsg)){
+    h+=`<div class="ctawrap">`
+     +`<a class="cta cta1" href="${_su}" target="_blank">🏫 <b>${u.n} 수업 신청하러가기</b> <span style="font-weight:800">(첫 결제 50% 할인)</span></a>`
+     +`<a class="cta cta1" href="${SIGNUP}#ot=${encodeURIComponent(u.n)}" target="_blank">📄 <b>${u.n} 합격 스킬 PDF & VOD 받으러가기</b></a>`
+     +`</div>`;
+  }
   if(u.dept){
     let hasL=u.dept.some(x=>x[2]);
     let hasC=u.dept.some(x=>x.length>3&&x[3]!=null);
