@@ -104,7 +104,7 @@ th{{background:#f6f8f7;width:34%;color:var(--gd);font-weight:700}}
 .pre{{color:#D64545;font-weight:800;margin:2px 0 10px}}
 .cta-wrap{{display:flex;flex-direction:column;gap:8px;margin:18px 0}}
 .cta{{display:block;text-align:center;text-decoration:none;border-radius:12px;padding:14px;font-weight:800;font-size:14px}}
-.cta1{{background:var(--g);color:#fff}}
+.cta1{{background:linear-gradient(90deg,#FFE24D,#FFC61A);color:var(--gd);border:1.5px solid #F0B400}}
 .cta2{{background:#fff;color:var(--gd);border:1.5px solid var(--g)}}
 .back{{display:inline-block;margin-top:26px;color:var(--gd);font-weight:700}}
 .disc{{color:var(--mut);font-size:12.5px;margin-top:18px;line-height:1.7}}
