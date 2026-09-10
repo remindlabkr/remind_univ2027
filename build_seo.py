@@ -58,11 +58,23 @@ def page(u):
 
     dept = ''
     if u.get('dept'):
-        rows = ''.join(f"<tr><td>{html.escape(str(d[0]))}</td><td>{d[1]}</td></tr>" for d in u['dept'])
+        # 계열(세 번째 값)이 있으면 열로 보여준다. 한국외대처럼 인문계와 사회계의
+        # 제시문 유형이 다른 학교는 이걸 빼면 사회계 학과가 인문계로 읽힌다.
+        has_line = any(len(d) > 2 and d[2] for d in u['dept'])
+        if has_line:
+            rows = ''.join(
+                f"<tr><td>{html.escape(str(d[0]))}</td>"
+                f"<td>{html.escape(str(d[2] or ''))}</td><td>{d[1]}</td></tr>" for d in u['dept'])
+            head = '<tr><th>모집단위</th><th>계열</th><th>모집인원</th></tr>'
+            foot = '<tr><td><b>합계</b></td><td></td><td><b>{}</b></td></tr>'
+        else:
+            rows = ''.join(f"<tr><td>{html.escape(str(d[0]))}</td><td>{d[1]}</td></tr>" for d in u['dept'])
+            head = '<tr><th>모집단위</th><th>모집인원</th></tr>'
+            foot = '<tr><td><b>합계</b></td><td><b>{}</b></td></tr>'
         total = sum(d[1] for d in u['dept'])
-        dept = (f'<h2>{n} 2027 인문 논술 학과별 모집인원</h2>'
-                f'<table><thead><tr><th>모집단위</th><th>모집인원</th></tr></thead>'
-                f'<tbody>{rows}<tr><td><b>합계</b></td><td><b>{total}</b></td></tr></tbody></table>')
+        dept = (f'<h2>{n} 2027 논술 학과별 모집인원</h2>'
+                f'<table><thead>{head}</thead>'
+                f'<tbody>{rows}{foot.format(total)}</tbody></table>')
     elif u.get('enr'):
         dept = f'<h2>{n} 2027 모집인원</h2><p>{html.escape(strip_tags(u["enr"]))}</p>'
 
