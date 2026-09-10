@@ -72,9 +72,11 @@ def page(u):
             head = '<tr><th>모집단위</th><th>모집인원</th></tr>'
             foot = '<tr><td><b>합계</b></td><td><b>{}</b></td></tr>'
         total = sum(d[1] for d in u['dept'])
+        # deptnote 는 계열별 시험일이나 제외 인원 같은 단서다. 표만 옮기면 뜻이 달라진다.
+        note = f'<p class="disc">{u["deptnote"]}</p>' if u.get('deptnote') else ''
         dept = (f'<h2>{n} 2027 논술 학과별 모집인원</h2>'
                 f'<table><thead>{head}</thead>'
-                f'<tbody>{rows}{foot.format(total)}</tbody></table>')
+                f'<tbody>{rows}{foot.format(total)}</tbody></table>{note}')
     elif u.get('enr'):
         dept = f'<h2>{n} 2027 모집인원</h2><p>{html.escape(strip_tags(u["enr"]))}</p>'
 
